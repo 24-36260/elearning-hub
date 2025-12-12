@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div style="display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px;">
+    <div style="background:white; padding:40px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1); max-width:400px; width:100%;">
+        <h2 style="text-align:center; font-size:2rem; font-weight:700; margin-bottom:25px;">Create an Account</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p style="color: #dc2626 #16a34a #374151;
+                              background:#f9fafb; padding:10px 15px; border-radius:6px; margin-bottom:15px; text-align:center;">
+                        {{ message }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" style="display:flex; flex-direction:column; gap:15px;">
+            <input type="text" name="name" placeholder="Full Name" required
+                   style="padding:12px 15px; border:1px solid #d1d5db; border-radius:8px; font-size:1rem;">
+            <input type="email" name="email" placeholder="Email" required
+                   style="padding:12px 15px; border:1px solid #d1d5db; border-radius:8px; font-size:1rem;">
+            <input type="password" name="password" placeholder="Password" required
+                   style="padding:12px 15px; border:1px solid #d1d5db; border-radius:8px; font-size:1rem;">
+            <button type="submit" 
+                    style="padding:12px 15px; background:#10B981; color:white; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
+                Register
+            </button>
+        </form>
+
+        <p style="text-align:center; margin-top:15px; color:#6b7280;">
+            Already have an account? 
+            <a href="{{ url_for('login') }}" style="color:#3B82F6; font-weight:600;">Log in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

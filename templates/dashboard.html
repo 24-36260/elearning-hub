@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Welcome back, {{ current_user.username.split()[0] if current_user.username else current_user.email }}</h1>
+  <div>
+    <a class="btn primary" href="{{ url_for('courses') }}">Browse Courses</a>
+  </div>
+</div>
+
+<div class="grid" style="margin-bottom:18px;">
+  <div class="card">
+    <h3 style="margin:0;">Total Courses</h3>
+    <p class="muted" style="font-size:22px; margin-top:8px;">{{ progress.total_courses if progress and progress.total_courses is defined else courses|length }}</p>
+  </div>
+  <div class="card">
+    <h3 style="margin:0;">Quizzes</h3>
+    <p class="muted" style="font-size:22px; margin-top:8px;">{{ progress.total_quizzes if progress and progress.total_quizzes is defined else 0 }}</p>
+  </div>
+  <div class="card">
+    <h3 style="margin:0;">Courses Completed</h3>
+    <p class="muted" style="font-size:22px; margin-top:8px;">{{ progress.courses_completed if progress and progress.courses_completed is defined else 0 }}</p>
+  </div>
+  <div class="card">
+    <h3 style="margin:0;">Quizzes Taken</h3>
+    <p class="muted" style="font-size:22px; margin-top:8px;">{{ progress.quizzes_taken if progress and progress.quizzes_taken is defined else 0 }}</p>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:18px;">
+  <h3>Recommended Courses</h3>
+  <div class="grid" style="margin-top:12px;">
+    {% for c in courses[:6] %}
+    <div class="card" style="padding:14px;">
+      <h4 style="margin:0 0 8px 0;">{{ c.title }}</h4>
+      <p class="muted">{{ c.short_desc }}</p>
+      <div style="margin-top:10px;">
+        <a class="btn primary" href="{{ url_for('course_detail', course_id=c.id) }}">Open</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card">
+  <h3>Recent Activity</h3>
+  {% if recent_activity %}
+    <ul>
+      {% for item in recent_activity %}
+        <li>{{ item.title }} — <small class="muted">{{ item.time }}</small></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No recent activity.</p>
+  {% endif %}
+</div>
+{% endblock %}

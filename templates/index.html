@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div style="
+    text-align:center; 
+    padding:60px 20px; 
+    background: url('https://cdn-res.keymedia.com/cms/images/au/130/0413_638529961915543850.jpg') 
+                no-repeat center center/cover; 
+    border-radius:12px; 
+    margin-bottom:40px; 
+    position:relative;
+    color:white;
+">
+    <!-- Overlay for better readability -->
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); border-radius:12px;"></div>
+
+    <!-- Content on top of overlay -->
+    <div style="position:relative; z-index:1;">
+        <h1 style="font-size:2.5rem; font-weight:700; margin-bottom:20px;">Welcome to E-Learning Platform</h1>
+        <p style="font-size:1.2rem; max-width:600px; margin:0 auto 30px;">Explore our courses and start learning today! Learn at your own pace, anytime, anywhere.</p>
+        
+        {% if not current_user.is_authenticated %}
+        <div style="margin-top:20px;">
+            <a href="{{ url_for('login') }}" style="padding:12px 24px; background:#3B82F6; color:white; border-radius:8px; text-decoration:none; font-weight:600; margin-right:10px;">Log In</a>
+            <a href="{{ url_for('register') }}" style="padding:12px 24px; background:#10B981; color:white; border-radius:8px; text-decoration:none; font-weight:600;">Register</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<h2 style="font-size:1.8rem; font-weight:700; margin-bottom:20px;">Available Courses</h2>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+    {% for course in courses %}
+    <div style="background:white; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+            <h3 style="font-size:1.3rem; font-weight:600; margin-bottom:10px;">{{ course.title }}</h3>
+            {% if course.short_desc %}
+            <p style="color:#555; margin-bottom:15px;">{{ course.short_desc }}</p>
+            {% endif %}
+        </div>
+        <a href="{{ url_for('course_detail', course_id=course.id) }}" 
+           style="padding:10px 16px; background:#3B82F6; color:white; border-radius:8px; text-align:center; font-weight:600; text-decoration:none; margin-top:auto;">
+           View Course
+        </a>
+    </div>
+    {% else %}
+    <p style="color:#777;">No courses available yet. Please check back later!</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

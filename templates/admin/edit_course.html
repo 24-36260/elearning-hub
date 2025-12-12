@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Course{% endblock %}
+
+{% block content %}
+<div style="max-width:600px; margin:50px auto; padding:30px; background:#f9f9f9; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+    <h2 style="margin-bottom:20px;">Edit Course</h2>
+    <form method="POST">
+        <label for="title">Course Title</label><br>
+        <input type="text" id="title" name="title" value="{{ course.title }}" style="width:100%; padding:10px; margin-bottom:15px; border-radius:6px; border:1px solid #ccc;"><br>
+
+        <label for="description">Short Description</label><br>
+        <textarea id="description" name="description" rows="4" style="width:100%; padding:10px; margin-bottom:15px; border-radius:6px; border:1px solid #ccc;">{{ course.short_desc }}</textarea><br>
+
+        <button type="submit" style="padding:10px 20px; background:#3B82F6; color:white; border:none; border-radius:6px; cursor:pointer;">Update Course</button>
+    </form>
+</div>
+{% endblock %}

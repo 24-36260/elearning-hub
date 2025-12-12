@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Add Question{% endblock %}
+{% block content %}
+<h2>Add Question to "{{ quiz.title }}"</h2>
+<form method="post">
+    <input type="text" name="text" placeholder="Question Text" required>
+    <input type="text" name="correct_answer" placeholder="Correct Answer" required>
+    <input type="submit" value="Add Question" class="btn">
+</form>
+{% endblock %}

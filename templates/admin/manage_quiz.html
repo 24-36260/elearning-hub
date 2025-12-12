@@ -1,0 +1,23 @@
+{% extends "admin/admin_base.html" %}
+{% block admin_title %}Quiz Manager{% endblock %}
+{% block admin_content %}
+<h2>Quizzes for "{{ course.title }}"</h2>
+<div style="margin-bottom:12px;">
+  <a class="btn primary" href="{{ url_for('admin_add_quiz', course_id=course.id) }}">+ Add Quiz</a>
+</div>
+
+<div class="grid">
+  {% for q in quizzes %}
+  <div class="card">
+    <strong>{{ q.title }}</strong>
+    <div class="muted">{{ q.description if q.description else '' }}</div>
+    <div style="margin-top:8px;">
+      <a class="btn" style="background:#F59E0B;" href="{{ url_for('edit_quiz', quiz_id=q.id) }}">Edit</a>
+      <a class="btn" style="background:#EF4444;" href="{{ url_for('admin_delete_quiz', quiz_id=q.id) }}" onclick="return confirm('Delete quiz?');">Delete</a>
+    </div>
+  </div>
+  {% else %}
+    <div class="card"><p class="muted">No quizzes yet.</p></div>
+  {% endfor %}
+</div>
+{% endblock %}

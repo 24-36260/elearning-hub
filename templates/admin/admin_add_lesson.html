@@ -1,0 +1,15 @@
+{% extends "admin/admin_base.html" %}
+{% block admin_title %}Add Lesson{% endblock %}
+{% block admin_content %}
+<h2>Add Lesson to "{{ course.title }}"</h2>
+<div class="card form-card">
+  <form method="POST">
+    <label>Lesson title</label>
+    <input name="title" required>
+    <label>Content</label>
+    <textarea name="content" required></textarea>
+    <button class="btn primary" type="submit">Add Lesson</button>
+    <a class="btn ghost" href="{{ url_for('course_detail', course_id=course.id) }}">Back</a>
+  </form>
+</div>
+{% endblock %}

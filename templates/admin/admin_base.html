@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Admin — {% block admin_title %}{% endblock %}{% endblock %}
+{% block content %}
+<div style="display:flex; gap:18px;">
+  <aside style="width:220px;">
+    <div class="card" style="padding:14px;">
+      <h3 style="margin:0 0 8px 0;">Admin Panel</h3>
+      <nav class="muted">
+        <div style="margin:8px 0;"><a href="{{ url_for('admin_dashboard') }}">Overview</a></div>
+        <div style="margin:8px 0;"><a href="{{ url_for('admin_add_course') }}">Add Course</a></div>
+        <div style="margin:8px 0;"><a href="{{ url_for('courses') }}">Manage Courses</a></div>
+        <div style="margin:8px 0;"><a href="{{ url_for('admin_manage_users') }}">Manage Users</a></div>
+      </nav>
+    </div>
+  </aside>
+
+  <section style="flex:1;">
+    {% block admin_content %}{% endblock %}
+  </section>
+</div>
+{% endblock %}

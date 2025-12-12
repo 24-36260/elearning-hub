@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title }}{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>{{ lesson.title }}</h1>
+  <div>
+    <a class="btn ghost" href="{{ url_for('course_detail', course_id=lesson.course.id) }}">← Back to Course</a>
+  </div>
+</div>
+
+<div class="card form-card">
+  <div class="muted">{{ lesson.content|safe }}</div>
+</div>
+{% endblock %}
