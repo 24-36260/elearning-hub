@@ -1,15 +1,11 @@
-# Python & virtual environment
-.venv/
-*.pyc
-__pycache__/
+# Ignore virtual environment
+venv/
+.env
 
-<<<<<<< HEAD
-# Instance folder (for database)
-=======
-# Instance and database
->>>>>>> 6e49fa7 (Add .gitignore to ignore venv, instance, and caches)
-instance/
+# Ignore SQLite database
 *.db
+instance/
 
-# Migration caches
-migrations/__pycache__/
+# Ignore __pycache__
+__pycache__/
+*.pyc
