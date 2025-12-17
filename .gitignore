@@ -1,12 +1,15 @@
-# Python cache
-__pycache__/
-*.pyc
-
-# Virtual environment
+# Python & virtual environment
 .venv/
+*.pyc
+__pycache__/
 
+<<<<<<< HEAD
 # Instance folder (for database)
+=======
+# Instance and database
+>>>>>>> 6e49fa7 (Add .gitignore to ignore venv, instance, and caches)
 instance/
+*.db
 
 # Migration caches
 migrations/__pycache__/
