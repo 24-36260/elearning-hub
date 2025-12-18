@@ -1,40 +1,33 @@
 -- Users table
 CREATE TABLE users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL UNIQUE,
+    full_name TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
+    password_hash TEXT NOT NULL,
+    role TEXT NOT NULL
 );
 
 -- Courses table
 CREATE TABLE courses (
     course_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    course_name TEXT NOT NULL,
-    instructor_id INTEGER,
-    FOREIGN KEY (instructor_id) REFERENCES users(user_id)
-);
-
--- Lessons table
-CREATE TABLE lessons (
-    lesson_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    lesson_title TEXT NOT NULL,
-    course_id INTEGER NOT NULL,
-    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    course_title TEXT NOT NULL
 );
 
 -- Quizzes table
 CREATE TABLE quizzes (
     quiz_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    quiz_title TEXT NOT NULL,
-    lesson_id INTEGER NOT NULL,
-    FOREIGN KEY (lesson_id) REFERENCES lessons(lesson_id)
+    course_id INTEGER NOT NULL,
+    quiz_title TEXT NOT NULL
 );
 
--- Questions table
-CREATE TABLE questions (
+-- Quiz Questions table
+CREATE TABLE quiz_questions (
     question_id INTEGER PRIMARY KEY AUTOINCREMENT,
     quiz_id INTEGER NOT NULL,
-    question_text TEXT NOT NULL,
-    answer TEXT NOT NULL,
-    FOREIGN KEY (quiz_id) REFERENCES quizzes(quiz_id)
+    question TEXT NOT NULL,
+    option_a TEXT,
+    option_b TEXT,
+    option_c TEXT,
+    option_d TEXT,
+    correct_answer TEXT
 );
