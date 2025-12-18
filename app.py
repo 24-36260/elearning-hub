@@ -131,10 +131,10 @@ def dashboard():
     return render_template('dashboard.html', courses=courses)
 
 @app.route('/courses')
-@login_required
 def courses():
-    courses = Course.query.all()
-    return render_template('courses.html', courses=courses, user=current_user)
+    courses = Course.query.all()  # or []
+    return render_template('courses.html', courses=courses)
+
 
 @app.route('/course/<int:course_id>')
 @login_required
